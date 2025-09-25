@@ -19,6 +19,7 @@ clues would be Fermi Pico.'''.format(NUM_DIGITS))
 
     while True:
         secretNum = getSecretNum()
+        print('__________________________________')
         print('I have thought up a number')
         print(f'You have {MAX_GUESSES} guesses to get it.')
 
@@ -27,17 +28,22 @@ clues would be Fermi Pico.'''.format(NUM_DIGITS))
             guess = ''
             while len(guess) != NUM_DIGITS or not guess.isdecimal():
                 print(f'Guess #{numGuesses}: ')
-                guess = input('>')
+                guess += input('>')
 
             clues = getClues(guess, secretNum)
             print(clues)
             numGuesses += 1
 
             if guess == secretNum:
+                print('You got it !')
                 break
-            if not input('> ').lower().startswith('y'):
-                break
-        print('Thanks for playing')
+            if numGuesses > MAX_GUESSES:
+                print('You ran out of guesses.')
+                print(f'The answer was {secretNum}.')
+                print('Do you want to play again? (yes or no)')
+                if not input('> ').lower().startswith('y'):
+                    break
+        print('Thanks for playing!')
 
 
 def getSecretNum():
