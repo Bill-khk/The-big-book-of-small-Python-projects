@@ -35,15 +35,14 @@ clues would be Fermi Pico.'''.format(NUM_DIGITS))
             numGuesses += 1
 
             if guess == secretNum:
-                print('You got it !')
                 break
             if numGuesses > MAX_GUESSES:
                 print('You ran out of guesses.')
                 print(f'The answer was {secretNum}.')
-                print('Do you want to play again? (yes or no)')
-                if not input('> ').lower().startswith('y'):
-                    break
-        print('Thanks for playing!')
+        print('Do you want to play again? (yes or no)')
+        if not input('> ').lower().startswith('y'):
+            print('Thanks for playing!')
+            break
 
 
 def getSecretNum():
@@ -79,3 +78,20 @@ def getClues(guess, secretNum):
 
 if __name__ == '__main__':
     main()
+
+# 1. What happens when you change the NUM_DIGITS constant?
+#     The number to guess is higher
+# 2. What happens when you change the MAX_GUESSES constant?
+#     The number of allowed attempts is different
+# 3. What happens if you set NUM_DIGITS to a number larger than 10?
+#   IndexError on line 54 because 'numbers' only has 10 max digits.
+# 4. What happens if you replace secretNum = getSecretNum() on line 30 with secretNum = '123'?
+#     the number to guess will always be 123
+# 5. What error message do you get if you delete or comment out numGuesses = 1 on line 34?
+#   UnboundLocalError, the program can't find the variable
+# 6. What happens if you delete or comment out random.shuffle(numbers) on line 62?
+#   the number to guess will always be 123
+# 7. What happens if you delete or comment out if guess == secretNum: on line 74 and return 'You got it!' on line 75?
+#   When guessing, you are not congratulated
+# 8. What happens if you comment out numGuesses += 1 on line 44
+#     You can guess indefinitely
